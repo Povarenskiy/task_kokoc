@@ -1,0 +1,23 @@
+<div class="modal fade" id="RegisterModal" tabindex="-1" role="dialog" aria-labelledby="RegisterModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="RegisterModalLabel">Регистрация</h5>
+      </div>
+
+      <form action="{% url 'register' %}" method="post" >
+        <div class="modal-body d-flex flex-column flex-wrap">
+          {% csrf_token %}
+          {{ register_form }}
+        </div>
+
+        <div class="d-grid gap-2 m-2 mb-4">
+          <button type="submit" class="btn btn-primary">Регистрация</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+        </div>
+      </form>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+{% extends 'questionnaire/header.html' %}
+
+{% block content %}
+
+
+<div class="container">
+    <div class="profile-info">
+        <div class="profile-info-item">
+            Очки: {{ profile.reward }}
+        </div>
+        
+        <div class="profile-info-item">
+            Цвет рамки: {{ profile.border_color }}
+        </div>
+        
+        <div class="profile-info-item">
+            Цвет фона: {{ profile.background_color }}
+        </div>
+
+    </div>
+
+    <button id="home">На главную</button> 
+</div>
+
+
+<script>
+    document.querySelector('#home').onclick = function(e) {
+        window.location.href = "{% url 'home' %}"
+    }
+
+</script>
+{% endblock %}

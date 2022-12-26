@@ -1,0 +1,27 @@
+{% extends 'questionnaire/header.html' %}
+
+{% block content %}
+
+<style>
+    .container {
+        width: fit-content;
+        height: fit-content;
+    }
+</style>
+
+<!-- <div class="container border rounded p-5"> -->
+    
+    {% if form.errors %}
+        <p>{{ form.errors.error }}</p>
+    {% endif %}
+
+    <form action="{% url 'login' %}" method="post">
+        {{ form }}
+        {% csrf_token %}
+        <button tupe="submit">Войти</button>
+    </form>
+
+<!-- </div> -->
+
+
+{% endblock %}

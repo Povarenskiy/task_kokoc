@@ -1,0 +1,20 @@
+{% extends 'questionnaire/header.html' %}
+
+{% block content %}
+
+<style>
+    .container {
+        width:fit-content;
+        height: fit-content;
+    }
+</style>
+
+<!-- <div class="container p-3"> -->
+    <form action="{% url 'register' %}" method="post">
+        {{ form }}
+        {% csrf_token %}
+        <button type="submit">Регистрация</button>
+    </form>
+<!-- </div> -->
+
+{% endblock %}

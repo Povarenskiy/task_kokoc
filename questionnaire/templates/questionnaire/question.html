@@ -1,0 +1,60 @@
+{% extends 'questionnaire/header.html' %}
+
+{% block content %}
+
+<style>  
+
+    .container {
+        height: fit-content;
+        width: 50%;
+    }
+
+    .my-check {
+        transition: 0.5s;
+    }
+
+    .my-check:hover {
+        transform: scale(1.05);
+        }
+
+
+</style>
+  
+<!-- <div class="container pt-5 pb-3"> -->
+    
+    <form method="POST">
+        {% csrf_token %}
+        {% for question in question_list %}
+            <div class="row border rounded bg-light m-4 mt-0">
+                <div class="fs-3 m-3">{{ question.text }}</div>
+                <div class="form-check">
+                    {% for answer in question.answer_set.all %}
+                        <div class="row my-check border m-2 justify-content-left align-items-center">
+                            <div class="col  m-1 bg-white">
+                                <input class="col form-check-input" type="radio" id="{{ answer.id }}" name="{{ question.id }}" value="{{ answer.id }}"/>                        
+                                <label class="row form-check-label m-1" for="{{ answer.id }}"> {{ answer.text }} </label>
+                            </div>
+                        </div>    
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+        <div class="row justify-content-end">
+            <div class="col-md-6 text-center">
+                <div class="d-grid gap-2 d-md-block">
+                    <button type="button" id="home" class="btn btn-secondary btn-lg m-1" data-toggle="button" aria-pressed="false">На главную</button>
+                    <button type="submit" class="btn btn-primary btn-lg m-1" data-toggle="button" aria-pressed="false">Завершить</button>
+                </div>
+            </div>
+        </div>
+    </form> 
+<!-- </div> -->
+
+
+<script>
+    document.querySelector('#home').onclick = function(e) {
+        window.location.href = "{% url 'home' %}"
+    }
+
+</script>
+{% endblock %}

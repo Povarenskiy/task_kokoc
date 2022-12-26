@@ -1,0 +1,113 @@
+{% extends 'questionnaire/header.html' %}
+
+{% block content %}
+
+
+<style>  
+    .container {
+        background-color: white;
+        height: fit-content;
+        width: 60%;
+        border-radius: 8px;
+        border: 2px solid;
+        border-color: {{ profile.border_color }};
+    }
+
+    .my-custom-row {
+        height: 10vh;
+    }
+
+    body {
+        background-color: {{ profile.background_color }};
+    }
+
+</style>
+
+    
+<!-- <div class="container shadow-2-strong mt-4 p-5"> -->
+    <div class="row my-custom-row align-items-center">
+        <div class="fs-3 text-left m-2">Профиль пользователя: {{ profile.user }}</div>
+    </div>
+    <div class="row align-items-center">
+        <div class="fs-4 text-left m-2">Очки: {{ profile.reward }}</div>
+    </div>
+    <div class="row align-items-center justify-content-left">
+        <div class="col-md-3">
+            <div class="fs-4 text-left m-2">Цвет рамки:</div>
+        </div>
+        <div class="col-md-2">
+            <form method="POST">
+            {% csrf_token %}
+            <input type="color" class="form-control form-control-color" name="border-color" value="{{ profile.border_color }}" title="Choose your color">
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-outline-success" data-toggle="button" aria-pressed="false">Выбрать</button>     
+        </div>
+        </form>
+    </div>
+    <div class="row justify-content-center text-warning">{{ border_error }}</div>
+
+    <div class="row align-items-center justify-content-left">
+        <div class="col-md-3">
+            <div class="fs-4 text-left m-2">Цвет фона:</div>
+        </div>
+        <div class="col-md-2">
+            <form method="POST">
+            {% csrf_token %}
+            <input type="color" class="form-control form-control-color" name="background-color" value="{{ profile.background_color }}" title="Choose your color">
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-outline-success" data-toggle="button" aria-pressed="false">Выбрать</button>
+                
+        </div>
+        </form>
+    </div>
+    <div class="row justify-content-center text-warning">{{ background_error }}</div>
+    
+
+<!-- </div> -->
+
+<!-- 
+<div style="background-color: {{ profile.background_color }}">
+
+<div class="container" style="border: 2px solid {{ profile.border_color}}">
+    <div class="profile-info">
+        <div class="profile-info-item">
+            Профиль польхователя: {{ profile.user }}
+        </div>
+
+        <div class="profile-info-item">
+            Очки: {{ profile.reward }}
+        </div>
+        <div class="profile-info-item" >
+            <div>Цвет рамки: </div>
+            <form method="POST">
+                {% csrf_token %}
+                <div><input type="color" name="border-color" value="{{ profile.border_color }}"></div>
+                <input type="submit" value="Выбрать">
+            </form>
+        </div>
+    
+        <div class="profile-info-item" >
+            <div>Цвет фона: </div>
+            <form method="POST">
+                {% csrf_token %}
+                <div><input type="color" name="background-color" value="{{ profile.background_color }}"></div>
+                <input type="submit" value="Выбрать">
+            </form>
+        </div>
+
+    </div>
+
+    <button id="home">На главную</button> 
+</div>
+
+</div> -->
+
+<script>
+    document.querySelector('#home').onclick = function(e) {
+        window.location.href = "{% url 'home' %}"
+    }
+
+</script>
+{% endblock %}
